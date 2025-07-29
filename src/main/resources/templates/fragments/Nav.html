@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset='utf-8'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+            crossorigin="anonymous"></script>
+    <title th:replace="${title}">main</title>
+</head>
+<body>
+<div th:fragment="navbar(content, title)">
+    <!--
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/posts">게시판</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item" th:if="${loginUser != null}">
+                        <a class="nav-link active" href="/posts/add">글작성</a>
+                    </li>
+
+                    <li class="nav-item" th:if="${loginUser != null}">
+                        <a class="nav-link active" href="/logout">로그아웃</a>
+                    </li>
+                    <li class="nav-item" th:if="${loginUser != null}">
+                        <a class="nav-link active" th:href="@{/users/{id}(id=${loginUser.id})}">마이페이지</a>
+                    </li>
+
+                    <li class="nav-item" th:unless="${loginUser != null}">
+                        <a class="nav-link active" href="/user">로그인</a>
+                    </li>
+                </ul>
+            </div>
+            <div th:if="${loginUser != null}">
+                <h4 th:text="${loginUser.nickname}"></h4>
+            </div>
+        </div>
+
+    </nav>
+    -->
+  
+<nav class="navbar bg-body-tertiary fixed-top">
+<div class="container-fluid">
+  <a class="navbar-brand" href="/">게시판</a>
+  <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+    <div class="offcanvas-header">
+      <div th:if="${loginUser != null}">
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel" th:text="${loginUser.nickname}">비회원</h5>
+      </div>
+      
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+        <li class="nav-item" th:if="${loginUser != null}">
+          <a class="nav-link" aria-current="page" href="/posts/add">글작성</a>
+        </li>
+        <li class="nav-item" th:if="${loginUser != null}">
+          <a class="nav-link" href="/logout">로그아웃</a>
+        </li>
+        <li class="nav-item" th:if="${loginUser != null}">
+          <a class="nav-link" th:href="@{/users/{id}(id=${loginUser.id})}">마이페이지</a>
+        </li>
+        <li class="nav-item" th:unless="${loginUser != null}">
+          <a class="nav-link active" href="/user">로그인</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+</nav>
+
+    <hr>
+    <div th:replace="${content}"></div>
+</div>
+</body>
+</html>

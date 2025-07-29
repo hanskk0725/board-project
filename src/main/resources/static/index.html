@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset='utf-8'>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+            crossorigin="anonymous"></script>
+    <title>Page Title</title>
+</head>
+<body class="p-3 mb-2 bg-light text-dark">
+<!-- nav-bar -->
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+  <div class="container-fluid">
+    
+    <a class="navbar-brand" href="/">게시판</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" 
+            data-bs-target="#navbarNav" aria-controls="navbarNav" 
+            aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="posts.html">글작성</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" href="loginForm.html">로그인</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<hr>
+
+<form class="d-flex" role="search" method="get" action="/search" style="width: 80%; display: block; margin-left: auto; margin-right: auto; ">
+  <input class="form-control me-2" type="search" placeholder="검색어를 입력하세요" name="query" aria-label="Search">
+  <button class="btn btn-outline-success" type="submit">🔍
+</button>
+</form>
+
+<!-- context -->
+<div style="width: 85%; display: block; margin-left: auto; margin-right: auto;">
+    <table class="table">
+        <thead>
+        <tr>
+            <td>번호</td>
+            <td>제목</td>
+            <td>작성일시</td>
+            <td>작성자</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>첫게시글</td>
+            <td>2025-07-17</td>
+            <td>admin</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>
