@@ -14,6 +14,7 @@
     <th:block th:fragment="title">
         <title>addPostForm</title>
     </th:block>
+    <hr>
 
     <th:block th:fragment="content">
         <!-- context -->
@@ -21,7 +22,7 @@
             <div style="width: 85%; display: block; margin-left: auto; margin-right: auto;">
                 <div>
                     <h3 th:text="*{title}"></h3>
-                    <p th:text="*{user.nickname}"></p>
+                    <p th:text="*{writer}"></p>
                     <p th:text="*{createdAt}"></p>
                 </div>
                 <div>
@@ -29,24 +30,69 @@
                 </div>
             </div>
             <hr>
-            <th:block th:if="${loginUser != null and loginUser.id == post.user.id}">
-                <div class="row w-25 mx-auto">
-                    <div class="col">
-                        <button type="button" class="btn btn-primary btn-lg w-100"
-                                th:onclick="|location.href='@{/posts/edit/{id}(id=${post.id})}'|">수정
-                        </button>
-                    </div>
-                    <div class="col">
-                        <form th:action="@{/posts/delete/{id}(id=${post.id})}" method="post">
-                            <button type="submit" class="btn btn-danger btn-lg w-100"
-                                    onclick="return confirm('정말 삭제하시겠습니까?');">삭제
-                            </button>
-                        </form>
+
+            <hr>
+            <!-- 댓글 리스트 영역 -->
+            <div class="mt-4">
+                <div th:each="comment : ${post.getComments()}">
+                    <div class="d-flex align-items-start border-bottom py-3">
+                        <!-- 작성자 아이콘 -->
+                        <div class="me-3">
+                            <div class="bg-secondary text-white rounded-circle d-flex justify-content-center align-items-center"
+                                 style="width: 36px; height: 36px; font-weight: bold;">
+                                <span th:text="${comment.writer.substring(0,1)}">유</span>
+                            </div>
+                        </div>
+                        <!-- 본문 -->
+                        <div class="flex-grow-1">
+                            <div class="d-flex justify-content-between">
+                                <strong th:text="${comment.writer}">로나코</strong>
+                                <small class="text-muted"
+                                       th:text="${#temporals.format(comment.createdAt, 'yyyy-MM-dd HH:mm')}">16시간
+                                    전</small>
+                            </div>
+                            <div th:text="${comment.content}" class="mt-1">참...추잡다 추가버...</div>
+                        </div>
                     </div>
                 </div>
-            </th:block>
+            </div>
+            <!--            <div th:if="*{comments != null}">-->
+            <!--                <div th:each="comment : ${post.getComments()}">-->
+            <!--                    <p th:text="${comment.writer}"></p>-->
+            <!--                    <p th:text="${comment.content}"></p>-->
+            <!--                    <p th:text="${comment.createdAt}"></p>-->
+            <!--                </div>-->
         </div>
-    </th:block>
+        <div class="mt-4">
+            <form th:action="@{/comments}" th:object="${comment}" method="post">
+                <input type="hidden" th:field="*{postId}" th:value="*{postId}"/>
+                <div class="mb-3">
+                    <textarea th:field="*{content}" class="form-control" rows="3" placeholder="댓글을 입력하세요..."></textarea>
+                </div>
+                <div class="text-end">
+                    <button type="submit" class="btn btn-sm btn-primary">댓글 작성</button>
+                </div>
+            </form>
+        </div>
+
+        <th:block th:if="${loginUser != null and loginUser.id == post.userId}">
+            <div class="row w-25 mx-auto">
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-lg w-100"
+                            th:onclick="|location.href='@{/posts/edit/{id}(id=${post.id})}'|">수정
+                    </button>
+                </div>
+                <div class="col">
+                    <form th:action="@{/posts/delete/{id}(id=${post.id})}" method="post">
+                        <button type="submit" class="btn btn-danger btn-lg w-100"
+                                onclick="return confirm('정말 삭제하시겠습니까?');">삭제
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </th:block>
+</div>
+</th:block>
 </div>
 </body>
 </html>

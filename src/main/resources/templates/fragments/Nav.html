@@ -11,40 +11,6 @@
 </head>
 <body>
 <div th:fragment="navbar(content, title)">
-    <!--
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/posts">게시판</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item" th:if="${loginUser != null}">
-                        <a class="nav-link active" href="/posts/add">글작성</a>
-                    </li>
-
-                    <li class="nav-item" th:if="${loginUser != null}">
-                        <a class="nav-link active" href="/logout">로그아웃</a>
-                    </li>
-                    <li class="nav-item" th:if="${loginUser != null}">
-                        <a class="nav-link active" th:href="@{/users/{id}(id=${loginUser.id})}">마이페이지</a>
-                    </li>
-
-                    <li class="nav-item" th:unless="${loginUser != null}">
-                        <a class="nav-link active" href="/user">로그인</a>
-                    </li>
-                </ul>
-            </div>
-            <div th:if="${loginUser != null}">
-                <h4 th:text="${loginUser.nickname}"></h4>
-            </div>
-        </div>
-
-    </nav>
-    -->
-  
 <nav class="navbar bg-body-tertiary fixed-top">
 <div class="container-fluid">
   <a class="navbar-brand" href="/">게시판</a>
@@ -77,6 +43,7 @@
     </div>
   </div>
 </div>
+    <hr>
 </nav>
 
     <hr>
