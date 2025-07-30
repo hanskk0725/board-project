@@ -76,3 +76,10 @@
 | 로그인 폼 | GET | /login |  |
 | 로그인 | POST | /login | 로그인 전 방문한 페이지 지로 이동 |
 | 로그아웃 | GET | /logout |  |
+
+> 댓글 관련
+>
+
+| 기능 | Method | URL | Redirect |
+| --- | --- | --- | --- |
+| 댓글 등록 | Post | /comments | /post/{id} → 내정보 조회 |
